@@ -1,8 +1,15 @@
 class Post < ActiveRecord::Base
 
   belongs_to :author
-  validate :is_title_case 
+  validate :is_title_case
 
+  before_validation :make_title_case
+
+  #before_save :email_author_about_post
+
+  #Difference before save and before create is that create
+  #has to be a new object. Save can refer to and updated object
+  
   private
 
   def is_title_case
